@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title >Taqdeer Prediction Home</title>
+</head>
+
+<style>
+    body {
+    background: linear-gradient(180deg, #127392, #94BF69);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+}
+#title {
+    background: linear-gradient(180deg, #127392, #94BF69);
+    padding: 2rem 2rem;
+}
+.container{
+    padding: 0 2rem;
+    max-width: 62.5;
+    margin: 0 auto;
+}
+.TaqdeerImage{
+    width: 250px;
+    float: left;
+    margin-right: 3rem;
+
+}
+.title-1 {
+    margin-top: 2%;
+    color:#fff;
+}
+
+
+.pmean {
+    color:#fff;
+    font-size: 24px;
+}
+p {
+    color: white;
+    font-size: 24px;
+   font-weight: 800;
+}
+
+li,
+a,
+button {
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #edf0f1;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+select{
+    justify-content: center;
+    align-items: center;
+    left: 20%;
+}
+img {
+    width: 50%;
+    height: 50%;
+    
+}
+
+</style>
+
+<body>
+   <div class="container">
+    <section id="title">
+        <img class="TaqdeerImage" src="https://www.taqdeer.sa/static_files/2018/07/89.png" alt="">
+        <div class="title-1">
+            <h1 style='margin-top: 40px;margin-bottom: 40px;'>Taqdeer Dataset</h1>
+            <p class="pmean">Machine learning project uses past vehicle damage <br> assessments to predict future vehicle damage assessments according to car information. </p>
+        </div>
+    </section>
+   </div>
+    
+    <h1 style='margin-top: 40px;margin-bottom: 40px;'>Get The Total Cost Prediction</h1>
+    <p>Enter the Car damage information</p>
+
+    <form action="{{url_for('predict')}}" method="post">
+
+
+        <p>Customer Car Inforamtion:</p>
+        <ul>
+ 
+        <li style='margin-top: 10px;margin-bottom: 10px;'><label for="Area">Area:</label><br>
+        <select id="Area" name="Area" required="required">
+            <option value="">--Please choose an option--</option>
+            {% for item, value in UniqueKeys['Area'].items(): %}
+                <option value={{ value }}>{{ item }}</option>
+            {% endfor %}
+        </select></li>
+        <li style='margin-top: 10px;margin-bottom: 10px;'><label for="CarBrand">Car Brand:</label><br>
+            <select id="CarBrand" name="CarBrand" required="required">
+                <option value="">--Please choose an option--</option>
+                {% for item, value in UniqueKeys['CarBrand'].items(): %}
+                    <option value={{ value }}>{{ item }}</option>
+                {% endfor %}
+            </select></li>
+        
+        <li style='margin-top: 10px;margin-bottom: 10px;'><label for="CarModel">Car Model:</label><br>
+            <select id="CarModel" name="CarModel" required="required">
+                <option value="">--Please choose an option--</option>
+                {% for item, value in UniqueKeys['CarModel'].items(): %}
+                    <option value={{ value }}>{{ item }}</option>
+                {% endfor %}
+            </select></li>
+
+         
+        <li style='margin-top: 10px;margin-bottom: 10px;'><label for="ManufactureYear">Manufacture Year:</label><br>
+            <input type="number" min="1900" max="2020" step="1" value="2016" /></li>
+
+            <li style='margin-top: 10px;margin-bottom: 10px;'><label for="CarMade">Car Made:</label><br>
+                <select id="CarMade" name="CarMade" required="required">
+                    <option value="">--Please choose an option--</option>
+                    {% for item, value in UniqueKeys['CarMade'].items(): %}
+                        <option value={{ value }}>{{ item }}</option>
+                    {% endfor %}
+                </select></li>
+                
+                <li style='margin-top: 10px;margin-bottom: 10px;'><label for="CarType">Car Type:</label><br>
+                    <select id="CarType" name="CarType" required="required">
+                        <option value="">--Please choose an option--</option>
+                        {% for item, value in UniqueKeys['CarType'].items(): %}
+                            <option value={{ value }}>{{ item }}</option>
+                        {% endfor %}
+                    </select></li>
+        </ul>
+
+        <p>Area Branch information:</p>
+        <ul>
+
+            <li style='margin-top: 10px;margin-bottom: 10px;'><label for="PaymentType">Payment Type:</label><br>
+                <select id="PaymentType" name="PaymentType" required="required">
+                    <option value="">--Please choose an option--</option>
+                    {% for item, value in UniqueKeys['PaymentType'].items(): %}
+                        <option value={{ value }}>{{ item }}</option>
+                    {% endfor %}
+                </select></li>
+
+                <li style='margin-top: 10px;margin-bottom: 10px;'><label for="PartOfDay">Part Of Day:</label><br>
+                    <select id="PartOfDay" name="PartOfDay" required="required">
+                        <option value="">--Please choose an option--</option>
+                        {% for item, value in UniqueKeys['PartOfDay'].items(): %}
+                            <option value={{ value }}>{{ item }}</option>
+                        {% endfor %}
+                    </select></li>
+            </ul>
+        
+        <p>Damage information:</p>
+        <ul>
+            <li style='margin-top: 10px;margin-bottom: 10px;'><label for="Parts">Part Name:</label><br>
+                <select id="Parts" name="Parts" required="required">
+                    <option value="">--Please choose an option--</option>
+                    {% for item, value in Parts['Parts'].items(): %}
+                        <option value={{ value }}>{{ item }}</option>
+                    {% endfor %}
+                </select></li>
+
+                <li style='margin-top: 10px;margin-bottom: 10px;'><label for="Position">Part Position:</label><br>
+                    <select id="Position" name="Position" required="required">
+                        <option value="">--Please choose an option--</option>
+                        {% for item, value in Parts['Position'].items(): %}
+                            <option value={{ value }}>{{ item }}</option>
+                        {% endfor %}
+                    </select></li>
+
+                <li style='margin-top: 10px;margin-bottom: 10px;'><label for="State">Part State:</label><br>
+                    <select id="State" name="State" required="required">
+                        <option value="">--Please choose an option--</option>
+                        {% for item, value in Parts['State'].items(): %}
+                            <option value={{ value }}>{{ item }}</option>
+                        {% endfor %}
+                    </select></li>
+        </ul>
+
+    
+
+        <!-- submit button -->
+        <li ><button type="submit" class="btn btn-success" style='margin-top: 10px;margin-bottom: 10px;'>Predict</button></li>
+        </ul>
+
+    </form>
+
+</body>
+</html>

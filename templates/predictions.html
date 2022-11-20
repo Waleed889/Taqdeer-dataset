@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Predictions</title>
+</head>
+
+
+
+
+<style>
+    body {
+    background: linear-gradient(180deg, #127392, #94BF69);
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+}
+#title {
+    background: linear-gradient(180deg, #127392, #94BF69);
+    padding: 0rem 2rem;
+}
+.container{
+    padding: 0 5rem;
+    max-width: 62.5;
+    margin: 0 auto;
+}
+.TaqdeerImage{
+    width: 250px;
+    float: left;
+    margin-right: 2rem;
+}
+
+.title-1 {
+    margin-top: 5%;
+    color:#fff;
+}
+
+
+.pmean {
+    color:#fff;
+    font-size: 24px;
+}
+p {
+    color: white;
+    font-size: 24px;
+   font-weight: 800;
+}
+
+li,
+a,
+button {
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #edf0f1;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+}
+select{
+    justify-content: center;
+    align-items: center;
+    left: 20%;
+}
+img {
+    width: 50%;
+    height: 50%;
+}
+
+</style>
+
+<body>
+    <div class="container">
+        <section id="title">
+            <img class="TaqdeerImage" src="https://www.taqdeer.sa/static_files/2018/07/89.png" alt="">
+            <div class="title-1">
+                <h1>Total Cost Predictions Results</h1>
+            </div>
+        </section>
+       </div>
+    <p>predictions based on your input </p>
+    <p>
+    {% for k,v in data.items(): %}
+     {{k}} --> {{v}}
+    {% endfor %}
+    </p>
+    <p>The Total cost is: {{prediction}}</p>
+    <br>
+
+</ul>
+<!-- submit button -->
+<li><a href="\"><button type="button" class="btn btn-success" style='margin-top: 10px;margin-bottom: 10px;' href="\">Go to Homepage</button></a></li>
+</ul>
+    <br>
+</body>
+</html>
